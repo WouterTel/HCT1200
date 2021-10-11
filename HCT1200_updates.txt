@@ -1,0 +1,74 @@
+Updates voor de HCT-1200 plug-in
+Laatsts bijgewerkt: 9-2-2021 (Wouter Tel, Dymato)
+Versie 2.1.0
+Vorige versie 2.0.2
+
+Verbeteringen in 2.1.0:
+
+	- Nieuwe manier van kalibreren gemaakt. De robot moet nu naar zowel de linker als rechter kalibratie positie worden gebracht.
+	  Aan de hand van het verschil tussen deze twee posities wordt eventuele verdraaiing van de robot gecompenseerd in de rasterposities.
+	- De pagina waarop grippers kunnen worden ingesteld is aangepast. Bij het aanpassen van een IO-gripper worden nu de namen van de outputs
+	  vermeld in het drop-down menu ipv enkel een cijfer 0 t/m 7.	
+
+Verbeteringen in 2.0.2:
+
+	- Bug gefixed in 'producten oppakken met andere orienatie'
+
+Verbeteringen in 2.0.1:
+
+	- Robotiq AirPick toegevoegd aan grippers.
+	- Gripper_adding_procedure.txt geupdate.
+
+Verbeteringen in 2.0.0:
+
+	Extension node
+
+	- Wanneer de plug-in voor het eerst wordt geactiveerd wordt de gebruiker gevraagd of hij alle oude settings wil verwijderen omdat deze misschien niet compatible zijn met de nieuwe plug-in.
+	- Wanneer een grid, gripper of product setting wordt aangepast worden de waardes van de instelling goed in de inputboxes weergegeven.
+	- Creëren van grid als functie ondergebracht in de extension en herschreven zodat deze overzichtelijker is.
+	- berekenen van de grid coordinaten wordt nu gedaan vanuit de linker hoek van de tafel.
+	- Als er geen calibratie is gedaan worden alle knoppen behalve de 'robot calibration' knop onzichtbaar. Zo kunnen er geen fouten worden gemaakt met het creëren van een grid of productsetting.
+	- Hoop code uit openView functie gehaald. Hier stond een hoop code om bepaalde schermen vorm te geven. Dit zit nu in een aparte functie die pas wordt gecalled op het moment dat er naar het
+	betrevende scherm wordt geswitched.
+
+	Grid settings
+	- Wanneer een nieuwe grid setting wordt aangemaakt wordt de gebruiker automatisch naar het eerste editscherm gestuurd ipv terug naar de initiele pagina.
+	- Min en max settings voor alle inputboxen van de grid setting paginas ingesteld.
+	- Voordat een grid setting wordt opgeslagen wordt gecontroleerd of er geen waardes zijn ingevoerd die tot errors lijden. Als dit wel het geval is verschijnt een pop-up.
+	- X en Y inutboxes gewisseld zodat X boven Y staat.
+	- X en Y variabelen omgewisseld in array zodat deze in juiste volgorde staan.
+	- Products to skip array kan niet meer fout worden ingevuld, gebruiker krijgt een error als op save wordt gedrukt.
+
+	Product settings
+	- Wanneer een nieuw product wordt aangemaakt wordt de gebruiker automatisch naar het eerste editscherm gestuurd ipv terug naar de initiele pagina.
+	- Min en max settings voor alle inputboxen van de product setting paginas ingesteld.
+	- Products in different orientation array kan niet meer fout worden ingevuld, gebruiker krijgt een error als op save wordt gedrukt.
+	- Delta X en delta Y omgedraaid zodat X boven Y staat.
+
+	Gripper
+	- Wanneer een nieuwe gripper wordt aangemaakt wordt de gebruiker automatisch naar het eerste edit scherm gestuurd ipv terug naar de initiele pagina.
+	- Grippers worden nu uit één lijst geselecteerd, dus geen apparte lijst voor merk en type. Dit gaf te veel bugs die moeilijk te verhelpen waren. Op deze manier zijn er veel minder code en minder checks
+		nodig, waardoor alles overzichtelijker en sneller is.
+	- Wanneer de gebruiker op 'Next' drukt terwijl geen gripper is geselecteerd wordt een pop-up getoond.
+	- Functie die selectboxes vult vervangen door overzichtelijkere en completere functies.
+	- Wanneer de gebruiker op 'Back' drukt terwijl nog geen instellingen zijn opgeslagen krijgt deze een pop up te zien. Ofwel de gebruiker blijft op dezelfde pagina, ofwel de instellingen worden verwijdert.
+
+	Kalibratie
+	- Kalibratie kan niet langer worden uitgevoerd zonder dat links of rechts is geselecteerd.
+	- 'Save' knop weggehaald van kalibratie pagina. Deze kon gewoon ingedrukt worden terwijl de robot niet gekalibreert was. Kalibratiedata wordt opgeslagen zodra de gebruiker op 'ok' drukt in
+		de robot position panel. Zodra dit gebeurt wordt de gebruiker doorgestuurd naar het homescreen en geïnformeerd dat de kalibratie gelukt is.
+
+	Program node
+
+	- Geselecteerde opties worden opgeslagen in het data model en worden bij het opstarten van de robot opgeroepen zodat deze niet elke keer opnieuw ingesteld moeten worden.
+	- Als een optie wordt verwijderd in de extension pagina terwijl deze in het data model staat geselecteerd wordt deze bij het openenen van de program node verwijdert uit het data model.
+	- 'Stack' en 'Unstack' veranderd naar 'Pick' en 'Place'. Deze maken nu beide gebruik van dezelfde arrays met coordinaten. Wanneer 'Place' wordt geselecteerd worden de arrays van achter naar voren doorlopen. 
+	- Blending inputs gefixed.
+	- Overbodige code uit openView functie gehaald. 
+
+Verbeterpunten voor volgende versie:
+
+	- Als een optie is verwijderd terwijl deze geselecteerd staat, en vervolgens wordt er een nieuwe optie gemaakt met dezelfde naam, dan staat deze optie weer geselecteerd in de program 
+		node ook al staat deze niet in het data model. Waarom dit gebeurt is niet duidelijk. Het programma geeft dan een foutmelding wanneer apply gedrukt wordt
+		Wanneer de optie in het drop down menu opnieuw wordt geselecteerd kan gewoon apply gedrukt worden.
+	- Global variable voor TCP zou weg moeten kunnen worden gehaald, maar nog niet uitgevogeld hoe. Zou mooi zijn als deze niet meer door de gebruiker hoeft te worden ingesteld.

@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<style>
+.container {
+    display: flex;
+    width: 900px;
+    height: 600px;
+    padding: 15px;
+    border-radius: 5px;
+    border-bottom: 1px solid #d8d8d7;
+    background-color: white;
+    box-shadow: 10px 10px 5px grey;
+    position: relative;
+
+}
+
+.screen-overlay {
+    width: 930px;
+    height: 635px;
+    position: absolute;
+    border-radius: 5px;
+    background-color: grey;
+    opacity: .7;
+    top: 30px;
+    left: 0px;
+    z-index:99;
+
+}
+
+.overlay-popup {
+    width: 400px;
+    height: 300px;
+    position: absolute;
+    border-radius: 5px;
+    background-color: #f3f6f7;
+    top: 25%;
+    left: 25%;
+    border: 1px solid #d8d8d7;
+    box-shadow: 10px 10px 5px grey;
+    z-index:99;
+
+}
+
+.overlay-popup .label-1 {
+    height: 50px;
+    width: 350px;
+    margin: 25px;
+    font-size: 20px;
+    
+}
+
+.overlay-popup .label-2 {
+    margin: 12px;
+    margin-left: 50px;
+
+}
+
+.overlay-popup .xbtn {
+    width: 125px;
+    height: 50px;
+    margin: 12px 35px; 
+    font-size: 13px;
+}
+
+.overlay-popup .input {
+    width: 200px;
+    height: 50px;
+    margin: 12px; 
+    margin-right: 0px;
+    margin-bottom: 50px;
+    font-size:13px;
+}
+
+.screen-1 {
+    display: block;
+    width: 850px;
+    height: 550px;
+    margin: 10px;
+
+}
+
+.screen-1 .block-1 {
+    width: 850px;
+    height: 170px;
+
+}
+
+.screen-1 .block-2 {
+    width: 850px;
+    height: 250px;
+    text-align: center;
+
+}
+
+.screen-1 .block-3 {
+    width: 850px;
+    height: 130px;
+}
+
+.screen-1 .btn {
+    width: 350px;
+    height: 50px;
+    margin: 10px;
+
+}
+
+.screen-1 .img-1 {
+    margin: 0px;
+    margin-right: 190px;
+    width: 348px;
+    height: 90px;
+
+}
+
+.screen-1 .img-2 {
+    margin: 0px;
+    width: 296px;
+    height: 100px;
+
+}
+
+.screen-1 .xbtn {
+    width: 400px;
+    height: 50px;
+    margin: 12px 225px; 
+    font-size:13px;
+}
+
+.screen-2 {
+    display: block;
+    width: 850px;
+    height: 550px;
+    margin: 10px;
+
+}
+
+.screen-2 .block-1 {
+    width: 850px;
+    height: 170px;
+
+}
+
+.screen-2 .block-2 {
+    width: 850px;
+    height: 250px;
+    text-align: center;
+
+}
+
+.screen-2 .block-3 {
+    width: 900px;
+    height: 130px;
+}
+
+.screen-2 .img-1 {
+    margin: 0px;
+    margin-right: 190px;
+    width: 348px;
+    height: 90px;
+
+}
+
+.screen-2 .img-2 {
+    margin: 0px;
+    width: 296px;
+    height: 100px;
+
+}
+
+.screen-2 .xbtn {
+    width: 150px;
+    height: 50px;
+    margin: 12px 30px; 
+    font-size: 13px;
+
+}
+
+.screen-2 .selbox {
+    width: 400px;
+    height: 50px;
+    margin: 12px 225px;
+    font-size: 13px;
+}
+
+.screen-2 .label {
+    margin: 25px;
+    margin-bottom: 50px;
+}
+
+.screen-3 {
+    display: block;
+    width: 850px;
+    height: 550px;
+    margin: 10px;
+
+}
+
+.screen-3 .block-1 {
+    width: 850px;
+    height: 130px;
+
+}
+
+.screen-3 .block-2 {
+    width: 850px;
+    height: 350px;
+    display: flex;
+
+}
+
+.screen-3 .block-2-1 {
+    width: 355px;
+    height: 250px;
+    padding-top: 40px;
+
+}
+
+.screen-3 .block-2-2 {
+    width: 490px;
+    height: 250px;
+    display: block;
+
+}
+
+.screen-3 .block-2-3 {
+    width: 290px;
+    height: 250px;
+    padding-top: 40px;
+
+}
+
+.screen-3 .block-2-4 {
+    width: 200px;
+    height: 250px;
+    padding-top: 30px;
+
+}
+
+.screen-3 .block-2-5 {
+    width: 335px;
+    height: 250px;
+    padding-left: 100px;
+
+}
+
+.screen-3 .block-2-6 {
+    width: 290px;
+    height: 250px;
+    padding-top: 50px;
+
+}
+
+.screen-3 .block-2-7 {
+    width: 100px;
+    height: 250px;
+    padding-top: 40px;
+
+}
+
+.screen-3 .block-2-8 {
+    width: 335px;
+    height: 250px;
+    padding-left: 50px;
+
+}
+
+.screen-3 .block-2-9 {
+    width: 230px;
+    height: 250px;
+    padding-top: 30px;
+
+}
+
+.screen-3 .block-2-10 {
+    width: 100px;
+    height: 250px;
+    padding-top: 20px;
+
+}
+
+.screen-3 .block-2-11 {
+    width: 335px;
+    height: 250px;
+    padding-left: 75px;
+
+}
+
+.screen-3 .block-2-12 {
+    width: 150px;
+    height: 250px;
+    padding-top: 50px;
+
+}
+
+.screen-3 .block-2-13 {
+    width: 260px;
+    height: 250px;
+    padding-top: 30px;
+
+}
+
+.screen-3 .block-2-14 {
+    width: 355px;
+    height: 250px;
+    padding-top: 10px;
+
+}
+
+.screen-3 .grid-position-block {
+    display: block;
+    background-color: white;
+
+}
+
+.screen-3 .block-3 {
+    width: 850px;
+    height: 130px;
+}
+
+.screen-3 .img-1 {
+    margin: 0px;
+    margin-right: 190px;
+    width: 348px;
+    height: 90px;
+
+}
+
+.screen-3 .img-2 {
+    margin: 0px;
+    width: 296px;
+    height: 100px;
+
+}
+
+.screen-3 .img-3 {
+    width: 489px;
+    height: 318px;
+
+}
+
+.screen-3 .img-4 {
+    width: 261px;
+    height: 318px;
+
+}
+
+.screen-3 .xbtn {
+    width: 200px;
+    height: 50px;
+    margin: 12px 110px; 
+    font-size: 13px;
+
+}
+
+.screen-3 .input {
+    width: 115px;
+    height: 30px;
+    font-size: 13px;
+    margin-top: 35px;
+}
+
+.screen-3 .label {
+    margin: 25px;
+    margin-bottom: 50px;
+    margin-top: 35px;
+}
+
+.screen-3 .input-2 {
+    width: 115px;
+    height: 30px;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.screen-3 .label-2 {
+    margin: 25px;
+    margin-bottom: 50px;
+    margin-top: 15px;
+}
+
+.screen-3 .label-3 {
+    margin-bottom: 50px;
+    margin-top: 15px;
+}
+
+.screen-3 .label-4 {
+    margin: 25px;
+    margin-bottom: 33px;
+    margin-top: 50px;
+}
+
+.screen-3 .input-3 {
+    width: 115px;
+    height: 30px;
+    font-size: 13px;
+    margin-top: 15px;
+    margin-bottom: 33px;
+}
+
+.screen-3 .input-4 {
+    width: 115px;
+    height: 30px;
+    font-size: 13px;
+    margin-top: 50px;
+    margin-bottom: 33px;
+}
+
+.screen-3 .input-5 {
+    width: 115px;
+    height: 30px;
+    font-size: 13px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.screen-3 .input-6 {
+    width: 115px;
+    height: 30px;
+    font-size: 13px;
+    margin-top: 0px;
+    margin-bottom: 33px;
+}
+
+.screen-3 .input-7 {
+    width: 30px;
+    margin: 0px 5px; 
+    font-size: 13px;
+
+}
+
+.screen-3 .orientation-input {
+    height: 30px;
+    width: 250px;
+    font-size: 13px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+
+}
+
+.screen-3 .selbox {
+    width: 200px;
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 35px;
+    font-size: 13px;
+}
+
+.screen-4 {
+    display: block;
+    width: 850px;
+    height: 550px;
+    margin: 10px;
+
+}
+
+.screen-4 .block-1 {
+    width: 850px;
+    height: 130px;
+
+}
+
+.screen-4 .block-2 {
+    width: 850px;
+    height: 300px;
+    padding-top: 50px;
+    text-align: left;
+
+}
+
+.screen-4 .block-3 {
+    width: 850px;
+    height: 130px;
+}
+
+.screen-4 .img-1 {
+    margin: 0px;
+    margin-right: 190px;
+    width: 348px;
+    height: 90px;
+
+}
+
+.screen-4 .img-2 {
+    margin: 0px;
+    width: 296px;
+    height: 100px;
+
+}
+
+.screen-4 .xbtn {
+    width: 200px;
+    height: 50px;
+    margin: 12px 110px; 
+    font-size: 13px;
+
+}
+
+.screen-4 .selbox {
+    width: 400px;
+    height: 50px;
+    margin: 12px 225px;
+    font-size: 13px;
+}
+
+.screen-4 .label {
+    margin: 12px 225px;
+    margin-bottom: 10px;
+}
+
+.screen-5 {
+    display: block;
+    width: 850px;
+    height: 550px;
+    margin: 10px;
+
+}
+
+.screen-5 .selbox {
+    width: 200px;
+    height: 50px;
+    font-size: 13px;
+}
+
+.screen-5 .selbox-2 {
+    width: 150px;
+    height: 50px;
+    font-size: 13px;
+    margin: 0px 75px;
+}
+
+.screen-5 .block-1 {
+    width: 850px;
+    height: 130px;
+
+}
+
+.screen-5 .block-2 {
+    width: 850px;
+    height: 350px;
+    display: flex;
+
+}
+
+.screen-5 .block-2-1 {
+    width: 355px;
+    height: 250px;
+    padding-top: 0px;
+
+}
+
+.screen-5 .block-2-2 {
+    width: 490px;
+    height: 250px;
+
+}
+
+.screen-5 .block-3 {
+    width: 850px;
+    height: 130px;
+}
+
+.screen-5 .img-1 {
+    margin: 0px;
+    margin-right: 190px;
+    width: 348px;
+    height: 90px;
+
+}
+
+.screen-5 .img-2 {
+    margin: 0px;
+    width: 296px;
+    height: 100px;
+
+}
+
+.screen-5 .img-3 {
+    width: 489px;
+    height: 318px;
+
+}
+
+.screen-5 .xbtn {
+    width: 200px;
+    height: 50px;
+    margin: 12px 110px; 
+    font-size: 13px;
+    margin-top: 25px;
+
+}
+
+.screen-5 .xbtn-2 {
+    width: 200px;
+    height: 50px;
+    margin: 12px 110px; 
+    font-size: 13px;
+    margin-top: 25px;
+    background-color: #59D5EF;
+
+}
+
+.screen-5 .label {
+    margin: 25px;
+    margin-bottom: 35px;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+</style>
+
+<!-- The HTML code for the "welkomScherm" screen layout -->
+<XDiv id="homeScreen" visible="true">
+    <div class="container">
+        <div class="screen-1">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <XButton className="xbtn" id="btnCreatePattern" text="Create/Edit a pattern" visible="true"/>
+                <XButton className="xbtn" id="btnSetProducts" text="Set your product(s)" visible="true"/>
+                <XButton className="xbtn" id="btnSetGrippers" text="Set your gripper(s)" visible="true"/>
+                <XButton className="xbtn" id="btn-robot-calibration" text="Robot calibration"/>
+            </div>
+            <div class="block-3">
+
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+
+<!-- The HTML code for the "rasterScherm" screen layout -->
+<XDiv id="createNewOverlay_1" visible="false">
+    <div class="screen-overlay">
+    </div>
+    <div class="overlay-popup">
+        <XLabel className="label-1" id="lb-header-pop-up" >Create a new setting: </XLabel>
+        <XLabel className="label-2" id="lb-create-new-name" htmlFor= "inpCreateNewName" >Name: </XLabel>
+        <XInput className="input" id="inpCreateNewName" type="text"/>
+        <XButton className="xbtn" id="btn-create-setting" text="Create"/>
+        <XButton className="xbtn" id="btn-cancel" text="Cancel"/>
+    </div>
+</XDiv>
+<XDiv id="inputScreenGrid" visible="false">
+    <div class="container">
+        <div class="screen-2">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <XLabel className="label" id="lbRasterEdit" htmlFor= "selRasterEdit" visible="true" >Select a grid to edit or create a new one: </XLabel>
+                <XSelectBox className="selbox" id="selRasterEdit" className="select"></XSelectBox>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-create-new" text="Create new"/>
+                <XButton className="xbtn" id="btn-edit" text="Edit"/>
+                <XButton className="xbtn" id="btn-delete" text="Delete"/>
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenGridA" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-14">
+                    <XLabel className="label" id="lbGridDeltaX" htmlFor= "inpGridDeltaX" visible="true" >Delta X [mm]: </XLabel>
+                    <XInput className="input" id="inpGridDeltaX" type="number" min="0" size="20"/>
+                    <XLabel className="label" id="lbGridDeltaY" htmlFor= "inpGridDeltaY" visible="true" >Delta Y [mm]: </XLabel>
+                    <XInput className="input" id="inpGridDeltaY" type="number" min="0" size="20"/>
+                    <XLabel className="label" id="lbGridDeltaZ" htmlFor= "inpGridDeltaZ" visible="true" >Delta Z [mm]: </XLabel>
+                    <XInput className="input" id="inpGridDeltaZ" type="number" min="0" size="20"/>
+                </div>
+                <div class="block-2-2">
+                    <XImage className="img-3" id="raster_deltax_deltay" src="resource/raster-deltax-deltay.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-next" text="Next"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenGridB" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-14">
+                    <XLabel className="label" id="lbStartEndX" htmlFor= "inpStartEndX" visible="true" >Start - End X [mm]: </XLabel>
+                    <XInput className="input" id="inpStartEndX" type="number" min="0" size="20"/>
+                    <XLabel className="label" id="lbStartEndY" htmlFor= "inpStartEndY" visible="true" >Start - End Y [mm]: </XLabel>
+                    <XInput className="input" id="inpStartEndY" type="number" min="0"	size="20"/>
+                    <XLabel className="label" id="lbStartEndZ" htmlFor= "inpStartEndZ" visible="true" >Start - End Z [mm]: </XLabel>
+                    <XInput className="input" id="inpStartEndZ" type="number" min="0" size="20"/>
+                </div>
+                <div class="block-2-2">
+                    <XImage className="img-3" id="raster_start_end_xy" src="resource/raster-start-end-xy.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-next" text="Next"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenGridC" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-9">
+                    <XLabel className="label-2" id="lbProductsX" htmlFor= "inpProductsX" visible="true" >Products in X direction: </XLabel>
+                    <XLabel className="label-2" id="lbProductsY" htmlFor= "inpProductsY" visible="true" >Products in Y direction: </XLabel>
+                    <XLabel className="label-2" id="lbProductsZ" htmlFor= "inpProductsZ" visible="true" >Products in Z direction: </XLabel>
+                    <XLabel className="label-2" id="lbProductsToSkip" htmlFor= "inpProductsToSkip" visible="true" >Products to skip: </XLabel>
+                </div>
+                <div class="block-2-10">
+                    <XInput className="input-3" id="inpProductsX" type="number" min="1" size="20"/>
+                    <XInput className="input-3" id="inpProductsY" type="number" min="1" size="20"/>
+                    <XInput className="input-3" id="inpProductsZ" type="number" min="1" size="20"/>
+                    <XInput className="input-3" id="inpProductsToSkip" type="text" size="20"/>
+                </div>
+                <div class="block-2-11">
+                    <XImage className="img-3" id="raster_no_of_products" src="resource/raster-no-of-products.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-next" text="Next"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenGridD" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-13">
+                    <XLabel className="label-2" id="lbNoGoZoneX" htmlFor= "inpNoGoZoneX" visible="true" >No go zone from base X [mm]: </XLabel>
+                    <XLabel className="label-2" id="lbNoGoZoneY" htmlFor= "inpNoGoZoneY" visible="true" >No go zone from base Y [mm]: </XLabel>
+                    <XLabel className="label-2" id="lbMaxReachX" htmlFor= "inpMaxReachX" visible="true" >Max reach in X [mm]: </XLabel>
+                    <XLabel className="label-2" id="lbMaxReachY" htmlFor= "inpMaxReachY" visible="true" >Max reach in Y [mm]: </XLabel>
+                </div>
+                <div class="block-2-10">
+                    <XInput className="input-3" id="inpNoGoZoneX" type="number" min="0" max="1300" size="20"/>
+                    <XInput className="input-3" id="inpNoGoZoneY" type="number" min="0" max="1300" size="20"/>
+                    <XInput className="input-3" id="inpMaxReachX" type="number" min="0" max="1300" size="20"/>
+                    <XInput className="input-3" id="inpMaxReachY" type="number" min="0" max="1300" size="20"/>
+                </div>
+                <div class="block-2-11">
+                    <XImage className="img-3" id="no_go_zone_max_min_reach" src="resource/no-go-zone-max-min-reach.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-save" text="Save"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<!-- The HTML code for the "robotPosScherm" screen layout -->
+<XDiv id="calibrationScreen" visible="false">
+    <div class="container">
+        <div class="screen-5">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-1">
+                    <XLabel className="label" id="lbSelCalibrationPosition" visible="true" >Step 1: Attach the robot calibration tool to the robot flange. </XLabel>
+                    <XSelectBox className="selbox-2" id="selCalibrationPosition" className="select" visible="false"></XSelectBox>
+                </div>
+                <div class="block-2-2">
+                    <XImage className="img-3" id="robot-calibration" src="resource/robot-calibration.gif"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-next" text="Next"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="calibrationScreenB" visible="false">
+    <div class="container">
+        <div class="screen-5">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-1">
+                    <XLabel className="label" id="lbStepTwo" visible="true" >Step 2: Press the calibration button and bring the calibration tool to the left calibration position </XLabel>
+                </div>
+                <div class="block-2-2">
+                    <XImage className="img-3" id="kalibratie-positie-links" src="resource/selecteren-verschillende-kalibratiepositie-links.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn-2" id="btn-set-robot-pos-left" text="Set robot position"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="calibrationScreenC" visible="false">
+    <div class="container">
+        <div class="screen-5">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-1">
+                    <XLabel className="label" id="lbStepThree" visible="true" >Step 3: Press the calibration button and bring the calibration tool to the right calibration position </XLabel>
+                </div>
+                <div class="block-2-2">
+                    <XImage className="img-3" id="kalibratie-positie-rechts" src="resource/selecteren-verschillende-kalibratiepositie-rechts.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn-2" id="btn-set-robot-pos-right" text="Set robot position"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<!-- The HTML code for the "gripperSettings" screen layout -->
+<XDiv id="createNewOverlay" visible="false">
+    <div class="screen-overlay">
+    </div>
+    <div class="overlay-popup">
+        <XLabel className="label-1" id="lb-header-pop-up" >Create a new setting: </XLabel>
+        <XLabel className="label-2" id="lb-create-new-name" htmlFor= "inpCreateNewName" >Name: </XLabel>
+        <XInput className="input" id="inpCreateNewName" type="text"/>
+        <XButton className="xbtn" id="btn-create-setting" text="Create"/>
+        <XButton className="xbtn" id="btn-cancel" text="Cancel"/>
+    </div>
+</XDiv>
+<XDiv id="inputScreenGripper" visible="false">
+    <div class="container">
+        <div class="screen-2">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <XLabel className="label" id="lbGripperEdit" htmlFor= "selGripperEdit" visible="true" >Select a gripper setting to edit or create a new one: </XLabel>
+                <XSelectBox className="selbox" id="selGripperEdit" className="select"></XSelectBox>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-create-new" text="Create new"/>
+                <XButton className="xbtn" id="btn-edit" text="Edit"/>
+                <XButton className="xbtn" id="btn-delete" text="Delete"/>
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenGripperA" visible="false">
+    <div class="container">
+        <div class="screen-4">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <XLabel     className="label"  id="lbGripperBrand"  htmlFor= "selGripperBrand" visible="true" >Select your gripper: </XLabel>
+                <XSelectBox className="selbox" id="selGripperBrand" ></XSelectBox>
+                <XLabel     className="label"  id="lbGripperType"   htmlFor= "selGripperType" visible="false" >Select the gripper type: </XLabel>
+                <XSelectBox className="selbox" id="selGripperType"  visible="false"></XSelectBox>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-next" text="Next"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenGripperB" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-3">
+                    <XLabel className="label-2"  id="lbConnectionType" htmlFor= "selConnectionType" visible="true" >Select the connection type: </XLabel>
+                    <XLabel className="label-2"  id="lbGripperOutputOpen" htmlFor= "selGripperOutputOpen" visible="true" >Digital output for gripper open: </XLabel>
+                    <XLabel className="label-2"  id="lbGripperOutputClose" htmlFor= "selGripperOutputClose" visible="true" >Digital output for gripper close: </XLabel>
+                    <XLabel className="label-2"  id="lbGripperAction" htmlFor= "selGripperAction" visible="true" >Gripper action: </XLabel>
+                </div>
+                <div class="block-2-4">
+                    <XSelectBox className="selbox" id="selConnectionType" visible="true"></XSelectBox>
+                    <XSelectBox className="selbox" id="selGripperOutputOpen" visible="true"></XSelectBox>
+                    <XSelectBox className="selbox" id="selGripperOutputClose" visible="true"></XSelectBox>
+                    <XSelectBox className="selbox" id="selGripperAction"></XSelectBox>
+                </div>
+                <div class="block-2-5">
+                    <XImage className="img-4" id="gripper-schunk-egpc" src="resource/gripper-schunk-egpc.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-save" text="Save"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenGripperC" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-1">
+                    <XLabel className="label" id="lbWidthOnRobotGripper" htmlFor= "inpWidthOnRobotGripper" visible="true" >Gripping Width [mm]: </XLabel>
+                    <XInput className="input" id="inpWidthOnRobotGripper" type="number" size="20" min="0" max="160"/>
+                    <XLabel className="label" id="lbForceOnrobotGripper" htmlFor= "inpForceOnRobotGripper" visible="true" >gripping Force [N]: </XLabel>
+                    <XInput className="input" id="inpForceOnRobotGripper" type="number" size="20" min="25" max="120"/>
+                </div>
+                <div class="block-2-5">
+                    <XImage className="img-4" id="gripper-onrobot-rg6" src="resource/gripper-onrobot-rg6.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-save" text="Save"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenGripperD" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-14">
+                    <XLabel className="label" id="lbWidthRobotiqGripper" htmlFor= "inpWidthRobotiqGripper" visible="true" >Gripping Width [%]: </XLabel>
+                    <XInput className="input" id="inpWidthRobotiqGripper" type="number" size="20" min="0" max="100"/>
+                    <XLabel className="label" id="lbSpeedRobotiqGripper" htmlFor= "inpSpeedRobotiqGripper" visible="true" >Gripping Speed [%]: </XLabel>
+                    <XInput className="input" id="inpSpeedRobotiqGripper" type="number" size="20" min="0" max="100"/>
+                    <XLabel className="label" id="lbForceRobotiqGripper" htmlFor= "inpForceRobotiqGripper" visible="true" >Gripping Force [%]: </XLabel>
+                    <XInput className="input" id="inpForceRobotiqGripper" type="number" size="20" min="0" max="100"/>
+                </div>
+                <div class="block-2-5">
+                    <XImage className="img-4" id="gripperRobotiq" src="resource/gripper-robotiq.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-save" text="Save"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenGripperE" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-3">
+                    <XLabel className="label-2"  id="lbConnectionType" htmlFor= "selConnectionType" visible="true" >Select the connection type: </XLabel>
+                    <XLabel className="label-2"  id="lbGripperOutputOpen" htmlFor= "selGripperOutputOpen" visible="true" >Digital output for gripper open: </XLabel>
+                    <XLabel className="label-2"  id="lbGripperOutputClose" htmlFor= "selGripperOutputClose" visible="true" >Digital output for gripper close: </XLabel>
+                    <XLabel className="label-2"  id="lbGripperAction" htmlFor= "selGripperAction" visible="true" >Gripper action: </XLabel>
+                </div>
+                <div class="block-2-4">
+                    <XSelectBox className="selbox" id="selConnectionType"></XSelectBox>
+                    <XSelectBox className="selbox" id="selGripperOutputOpen"></XSelectBox>
+                    <XSelectBox className="selbox" id="selGripperOutputClose"></XSelectBox>
+                    <XSelectBox className="selbox" id="selGripperAction"></XSelectBox>
+                </div>
+                <div class="block-2-5">
+                    <XImage className="img-4" id="ioGripper" src="resource/io-gripper.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-save" text="Save"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenGripperF" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-3">
+                    <XLabel className="label-2"  id="lbGripperAction" htmlFor= "selGripperAction" visible="true" >Gripper action: </XLabel>
+                </div>
+                <div class="block-2-4">
+                    <XSelectBox className="selbox" id="selSuctionAction"></XSelectBox>
+                </div>
+                <div class="block-2-5">
+                    <XImage className="img-4" id="gripper-Robotiq-AirPick" src="resource/robotiq_airpick.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-save" text="Save"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<!-- The HTML code for the "productScherm" screen layout -->
+<XDiv id="createNewOverlay" visible="false">
+    <div class="screen-overlay">
+    </div>
+    <div class="overlay-popup">
+        <XLabel className="label-1" id="lb-header-pop-up" >Create a new setting: </XLabel>
+        <XLabel className="label-2" id="lb-create-new-name" htmlFor= "inpCreateNewName" >Name: </XLabel>
+        <XInput className="input" id="inpCreateNewName" type="text"/>
+        <XButton className="xbtn" id="btn-create-setting" text="Create"/>
+        <XButton className="xbtn" id="btn-cancel" text="Cancel"/>
+    </div>
+</XDiv>
+<XDiv id="inputScreenProduct" visible="false">
+    <div class="container">
+        <div class="screen-2">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <XLabel className="label" id="lbProductEdit" htmlFor= "selProductEdit" visible="true" >Select a product setting or create a new one: </XLabel>
+                <XSelectBox className="selbox" id="selProductEdit" className="select"></XSelectBox>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-create-new" text="Create new"/>
+                <XButton className="xbtn" id="btn-edit" text="Edit"/>
+                <XButton className="xbtn" id="btn-delete" text="Delete"/>
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenProductA" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-1">
+                    <XLabel className="label" id="lbProductDeltaX" htmlFor= "inpProductDeltaX" visible="true" >Delta X [mm]: </XLabel>
+                    <XInput className="input" id="inpProductDeltaX" type="number" min="0" size="20"/>
+                    <XLabel className="label" id="lbProductDeltaY" htmlFor= "inpProductDeltaY" visible="true" >Delta Y [mm]: </XLabel>
+                    <XInput className="input" id="inpProductDeltaY" type="number" min="0" size="20"/>
+                </div>
+                <div class="block-2-2">
+                    <XImage className="img-3" id="product_delta_xy" src="resource/product-delta-xy.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-next" text="Next"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenProductB" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-1">
+                    <XLabel className="label" id="lbProductDeltaZ" htmlFor= "inpProductDeltaZ" visible="true" >Delta Z [mm]: </XLabel>
+                    <XInput className="input" id="inpProductDeltaZ" type="number" min="0" size="20"/>
+                    <XLabel className="label" id="lbProductWeight" htmlFor= "inpProductWeight" visible="true" >Weight  [kg]: </XLabel>
+                    <XInput className="input" id="inpProductWeight" type="number" min="0" max="12" size="20"/>
+                </div>
+                <div class="block-2-2">
+                    <XImage className="img-3" id="product-z-val" src="resource/delta-z.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-next" text="Next"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+<XDiv id="inputScreenProductC" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-6">
+                    <XLabel className="label-2" id="lbOrientation1" htmlFor= "inpOrientation1" visible="true" >Orientation 1 [degrees]: </XLabel>
+                    <XLabel className="label-2" id="lbOrientation2" htmlFor= "inpOrientation2" visible="true" >Orientation 2 [degrees]: </XLabel>
+                    <XLabel className="label-2" id="lbPosOrientation2" htmlFor= "inpPosOrientation2" visible="true" >Products with orientation 2: </XLabel>
+                </div>
+                <div class="block-2-9">
+                    <div class="orientation-input">
+                        <XLabel id="lbOrientation1rx" htmlFor= "inpOrientation1rx" visible="true" >RX: </XLabel>
+                        <XInput className="input-7" id="inpOrientation1rx" type="number" size="2"/>
+                        <XLabel id="lbOrientation1ry" htmlFor= "inpOrientation1ry" visible="true" >RY: </XLabel>
+                        <XInput className="input-7" id="inpOrientation1ry" type="number" size="2"/>
+                        <XLabel id="lbOrientation1rz" htmlFor= "inpOrientation1rz" visible="true" >RZ: </XLabel>
+                        <XInput className="input-7" id="inpOrientation1rz" type="number" size="2"/>
+                    </div>
+                    <div class="orientation-input">
+                        <XLabel id="lbOrientation2rx" htmlFor= "inpOrientation2rx" visible="true" >RX: </XLabel>
+                        <XInput className="input-7" id="inpOrientation2rx" type="number" size="2"/>
+                        <XLabel id="lbOrientation2ry" htmlFor= "inpOrientation2ry" visible="true" >RY: </XLabel>
+                        <XInput className="input-7" id="inpOrientation2ry" type="number" size="2"/>
+                        <XLabel id="lbOrientation2rz" htmlFor= "inpOrientation2rz" visible="true" >RZ: </XLabel>
+                        <XInput className="input-7" id="inpOrientation2rz" type="number" size="2"/>
+                    </div>
+                    <XInput className="input-6" id="inpPosOrientation2" type="text" size="20"/>
+                </div>
+                <div class="block-2-8">
+                    <!--XImage className="img-3" id="product-z-val" src="resource/product-z-val.png"/-->
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-save" text="Save"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+
+
+</body>
+</html>

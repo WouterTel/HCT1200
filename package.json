@@ -1,0 +1,12 @@
+{
+    "name": "HCT-1200",
+    "version": "2.1.0",
+    "description": "With the use of this plug-in, pick and place patterns can be created and executed easily on the HCT-1200 cobot table",
+    "vendor": "Dymato Automation",
+    "copyright": "",
+    "contactAddress": "Ravelijn 48, 3905 NV, Veenendaal (Netherlands)",
+    "author": "Wouter Tel",
+    "dependencies": {},
+    "license": "",
+    "rodiVersion": "2.001.004.002_SIM"
+}

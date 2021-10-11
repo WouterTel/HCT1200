@@ -1,0 +1,37 @@
+Procedure for adding grippers
+
+This version of the HCT-1200 plug-in is compatible with the following grippers:
+
+- Schunk Co-Act
+- Robotiq E-Hand
+- Robotiq 2F-85/140
+- Robotiq AirPick
+- OnRobot RG-6
+- Any gripper which is controlled through the IO board 
+
+To add a gripper to the plug in you can following the following steps:
+
+In the extension node HTML code:
+
+	- Add a page that where the settings of the gripper can be entered. You can take f.i. 'inputScreenGripperC' as a template
+
+In the extension node contribution:
+
+	- Add the screen, that you added to the HTML file, to the screen list in the constructor function. (around line 58)
+	- Add the components in you HTML page to the select and input boxes (around line 78)
+	- Add the grippers name to 'this.selGripperList' in the constructor function.
+	- Add the screen, that you added to the HTML file, to the switchScreen function.
+	- Add the gripper to the setGripperPageTwo function to make sure the right screen will appear when the gripper settings are entered.
+	- Add the gripper to the saveGripperSettings function.
+
+	If you added a Robotiq gripper:
+	- look for the if statement in the setGripperPageOne function that checks if the Robotiq plug-in is installed and add your gripper to
+	  this list so it will get deleted when the Robotiq plug-in is not installed. Do this by adding the following command:
+	   this.selGripperBrand.removeItem("Your gripper name");
+
+In the program node contribution:
+
+	- Add the logic needed to open and close the gripper to the generateScript function (around line 271)
+
+	If you added a Robotiq gripper:
+	- Add the name of your Robotiq gripper to the if statement in the generateScript function around line 150 that gets the gripper ID.

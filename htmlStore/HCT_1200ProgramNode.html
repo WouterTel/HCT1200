@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<style>
+.container {
+    display: flex;
+    width: 565px;
+    height: 190px;
+    padding: 15px;
+    position: relative;
+
+}
+
+.screen-1 {
+    display: flex;
+    width: 545px;
+    height: 170px;
+
+}
+
+.screen-1 .block-1 {
+    width: 290px;
+    height: 200px;
+    display: block;
+    margin-right: 45px;
+
+}
+
+.screen-1 .block16 {
+    width: 290px;
+    height: 40 px;
+}
+
+.screen-1 .block-1-1 {
+    width: 140px;
+    height: 30px;
+    display: inline-block;
+    padding-top: 0px;
+}
+
+.screen-1 .block-1-2 {
+    width: 140px;
+    height: 30px;
+    display: inline-block;
+    padding-top: 5px;
+
+}
+
+.screen-1 .block-2 {
+    width: 210px;
+    height: 200px;
+    display: block;
+
+}
+
+.label-1 {
+    width: 100%;
+    font-size: 10px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+
+}
+
+.label-2 {
+    width: 90px;
+    font-size: 10px;
+    margin-top: 10px;
+    margin-right: 0px;
+
+}
+
+.selbox-1 {
+    width: 200px;
+    height: 10px;
+    margin-top: 0px;
+    margin-bottom: 35px;
+    font-size: 10px;
+}
+
+.input {
+    width: 20px;
+    height: 25px;
+    font-size: 10px;
+}
+
+.input-2 {
+    width: 20px;
+    height: 25px;
+    font-size: 10px;
+}
+
+</style>
+<div class="container">
+    <div class="screen-1">
+        <div class="block-1">
+            <XLabel className="label-1" id="lbGridSelect" htmlFor= "selGrid" visible="true" >Select a grid setting </XLabel>
+            <XSelectBox className="selbox-1" id="selGrid"></XSelectBox>
+            <XLabel className="label-1" id="lbStackTypeSelect" htmlFor= "selStackType" visible="true" >Pick or place? </XLabel>
+            <XSelectBox className="selbox-1" id="selStackType"></XSelectBox>
+            <div class="block16">
+                <div class="block-1-1">
+                    <XLabel className="label-2" id="lbInpSpeed" htmlFor= "inpSpeed" visible="true" >Speed [mm/s]: </XLabel>
+                    <XInput className="input" id="inpSpeed" size="20" type="number" min="0" max="800"/>
+                </div>
+                <div class="block-1-1">
+                    <XLabel className="label-2" id="lbInpAcc" htmlFor= "inpAcc" visible="true" >Acc. [mm/s^2]: </XLabel>
+                    <XInput className="input" id="inpAcc" size="5" type="number" min="0" max="1000"/>
+                </div>
+            </div>
+            <div class="block16">
+                <div class="block-1-2">
+                    <XLabel className="label-2" id="lbCbBlending" htmlFor="CbBlending" visible="true">Blending: </XLabel>
+                    <XCheckBox className="checkbox" id="CbBlending" visible="true"/>
+                </div>
+                <div class="block-1-2">
+                    <XLabel className="label-2" id="lbInpRadius" htmlFor="inpRadius" visible="true">Radius [mm]: </XLabel>
+                    <XInput className="input-2" id="inpRadius" size="4" type="number" visible="true" min="0" max="100"/>
+                </div>
+            </div>
+        </div>
+        <div class="block-2">
+            <XLabel className="label-1" id="lbProductSelect" htmlFor= "selProduct" visible="true" >Select a product setting </XLabel>
+            <XSelectBox className="selbox-1" id="selProduct"></XSelectBox>
+            <XLabel className="label-1" id="lbGripperSelect" htmlFor= "selGripper" visible="true" >Select a gripper setting </XLabel>
+            <XSelectBox className="selbox-1" id="selGripper"></XSelectBox>
+            <XLabel className="label-1" id="lbCounterVarSelect" htmlFor= "selCounterVar" visible="true" >Select a counter variable </XLabel>
+            <XSelectBox className="selbox-1" id="selCounterVar"></XSelectBox>
+        </div>
+    </div>
+    
+    <!--div class="wlkm-wrapper">
+        <div class="column" style="font-size:13px; margin-top: 20px;">
+            <p>The plugin uses the applied settings which are shown below. They can be edited in the HCT-1200 plugin settings screen.</p>
+        </div>
+        <div class="img-column">
+            <XImage id="logo" src="resource/logo-dymato.png" width="180" height="60"/>
+        </div>
+    </div-->
+
+    <!--div class="wrapper">
+        <div class="column flex-100">
+            <XLabel style="margin-left: 20px;">Start position: </XLabel><XInput placeholder="0" id="inpStart" type="text" size="21"/><br><br>
+            <XLabel style="margin-left: 20px;">X or Y direction: </XLabel><XSelectBox id="selDirection" className="select"><XOption label="X" value="X" /><XOption label="Y" value="Y" /></XSelectBox><br><br>
+            <XLabel style="margin-left: 20px;">Pick or Place?: </XLabel><XSelectBox id="selPickPlace" className="select"><XOption label="Pick" value="Pick" /><XOption label="Place" value="Place" /></XSelectBox>
+        </div>
+        <div class="column flex-50p">
+            
+            <span class="cell-1"><XLabel>Product: </XLabel></span><span class="cell-2"><XLabel id="lbProdSet">None</XLabel></span>
+            <span class="cell-1"><XLabel>Amount:  </XLabel></span><span class="cell-2"><XLabel id="lbProdX">None</XLabel></span><br><br><br>
+            <span class="cell-1"><XLabel>Grid:    </XLabel></span><span class="cell-2"><XLabel id="lbGridSet">None</XLabel></span>
+            <span class="cell-3"><XImage style="margin-top: 20px; margin-left:5px;" id="logo_1" src="resource/logo-hct-verkleind.png" width="150" height="39"/></span>
+            <br><br>
+            <span class="cell-1"><XLabel>Y:       </XLabel></span><span class="cell-2"><XLabel id="lbProdY">None</XLabel></span--><br><br>
+            <!--div class="img-column">
+                <XImage id="logo_1" src="resource/logo-hct-verkleind.png" width="228" height="75"/>
+            </div-->
+            <!--XButton className="xbtn fnt-grid" id="btnEditSettings" text="Edit settings"></XButton-->
+        <!--/div>
+    </div-->
+    
+
+    
+
+</div>
+
+    
+</body>
+</html>
