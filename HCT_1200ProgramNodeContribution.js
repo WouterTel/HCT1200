@@ -5,7 +5,7 @@ const ProgramNodeContribution = require('rodix_api').ProgramNodeContribution;
 Bugs to be fixed/Additions to be done:
 
     - Automatically change TCP when the robot picks up a product
-    - Option to move to product location from program node
+    - Option to move to specific product location from program node
     
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,6 +26,7 @@ class HCT_1200ProgramNodeContribution extends ProgramNodeContribution {
 	    // Defining extensions
         this.extension = rodiAPI.getExtensionContribution('HCT_1200ExtensionNodeContribution');
         this.extensionRobotiq = this.rodiAPI.getExtensionContribution('gripperExtensionNodeContribution');
+        //this.extensionOnRobot = this.rodiAPI.getExtensionContribution('OnrobotExtensionNodeContribution');
 
 	    // Defining selection boxes in program screen
         this.selGrid = this.components.selGrid;
@@ -161,6 +162,15 @@ class HCT_1200ProgramNodeContribution extends ProgramNodeContribution {
                 } 
             }
         }
+        // If OnRobot gripper is selected it is checked whether the OnRobot plug-in is installed.
+        /*
+        if(gripperSettings[0] === "OnRobot RG-6" || "OnRobot 2FG7" || "OnRobot 3FG15"){
+            if(this.extensionOnRobot === undefined) {
+                this.rodiAPI.getUserInteraction().MessageBox.show('ERROR', 'OnRobot gripper plugin has been removed! Please reïnstall plugin or change gripper settings.', 'ERROR', 'OK');
+                return;
+            }
+        }
+        */
 
         // Speed variables, the pick speed is set at 20 percent of the normal movement speed
         let speedApproach = selectedSpeed;
@@ -302,6 +312,100 @@ class HCT_1200ProgramNodeContribution extends ProgramNodeContribution {
                                         sleep(100)
                                         busy = onrobotXmlrpcClient.rg_get_busy(0);
                                     } while (busy == true);`);
+        } else if (gripperSettings[0] === "OnRobot 2FG7"){
+            // Check connection
+            enterWriter.appendLine(`let dev1 = onrobotXmlrpcClient.cb_is_device_connected(0, 192);`);
+            enterWriter.appendLine(`if (!dev1){
+                                    popup("OnRobot: 2FG device is not connected, Program halted!");
+                                    console.log("OnRobot: 2FG device is not connected, Program halted!");
+                                    halt();
+                                    }`);
+                
+            let deviceId = 0;
+            let width = gripperSettings[1]+0.0000000001;
+            let gripForce = gripperSettings[2];
+            let gripSpeed = gripperSettings[3];
+            
+            if (gripperSettings[5] == "Close"){
+                if (gripperSettings[4] == "External"){
+                    enterWriter.appendLine(`onrobotXmlrpcClient.twofg_grip_external(${deviceId},${width},${gripForce},${gripSpeed});`);
+                } else if (gripperSettings[4] == "Internal"){
+                    enterWriter.appendLine(`onrobotXmlrpcClient.twofg_grip_internal(${deviceId},${width},${gripForce},${gripSpeed});`);
+                }
+            } else if (gripperSettings[5] == "Open"){
+                if (gripperSettings[4] == "External"){
+                    enterWriter.appendLine(`onrobotXmlrpcClient.twofg_grip_internal(${deviceId},${width},70,${gripSpeed});`);
+                } else if (gripperSettings[4] == "Internal"){
+                    enterWriter.appendLine(`onrobotXmlrpcClient.twofg_grip_external(${deviceId},${width},70,${gripSpeed});`);
+                }
+            }
+            
+            //wait for grip to finish
+            enterWriter.appendLine(`let orbusy = onrobotXmlrpcClient.twofg_get_busy(${deviceId});
+                                    do {
+                                    sleep(100)
+                                    orbusy = onrobotXmlrpcClient.twofg_get_busy(${deviceId});
+                                    } while (orbusy == true);`);
+
+            if (gripperSettings[5] == "Close"){
+                //grip check
+                enterWriter.appendLine(`let orgripped = onrobotXmlrpcClient.twofg_get_grip_detected(${deviceId});
+                                        if (orgripped == false) {
+                                        console.log("OnRobot 2FG: Grip is Not detected!");
+                                        popup("OnRobot 2FG: Grip is Not detected!",1);
+                                        }`);
+            }         
+            
+        } else if (gripperSettings[0] === "OnRobot 3FG15"){
+
+            let deviceId = 0;
+            let moveDiameter = gripperSettings[1] + 0.0000000001;
+            let gripForce = gripperSettings[2] + 0.0000000001;
+            let gripType;
+            if (gripperSettings[3] == "Internal"){
+                gripType = "true";
+            } else if (gripperSettings[3] == "External"){
+                gripType = "false";
+            }
+
+            // Check connection
+            enterWriter.appendLine(`let dev1 = onrobotXmlrpcClient.cb_is_device_connected(0, 112);`);
+            enterWriter.appendLine(`if (!dev1){
+                                        popup("OnRobot: 3FG device not connected, Program halted!");
+                                        console.log("OnRobot: RGx device not connected, Program halted!");
+                                        halt();
+                                    }`);
+
+            if (gripperSettings[4] == "Move"){
+                enterWriter.appendLine(`onrobotXmlrpcClient.tfg_move(0,(${moveDiameter} + 0.00001));`);
+            } else if (gripperSettings[4] == "Grip"){
+                enterWriter.appendLine(`onrobotXmlrpcClient.tfg_grip(${deviceId},${moveDiameter},${gripForce},${gripType});`);
+            } else if (gripperSettings[4] == "Flexible grip"){
+                enterWriter.appendLine(`onrobotXmlrpcClient.tfg_flexible_grip(${deviceId},${moveDiameter},${gripForce},${gripType});`);
+            } 
+            
+            if (gripperSettings[4] == "Move"){
+                enterWriter.appendLine(`let busy = onrobotXmlrpcClient.tfg_get_busy(0);
+                                        do {
+                                        sleep(100)
+                                        busy = onrobotXmlrpcClient.tfg_get_busy(0);
+                                        } while (busy == true);
+                                        `);
+            } else if (gripperSettings[4] == "Grip" || gripperSettings[4] == "Flexible grip"){
+                enterWriter.appendLine(`let busy = onrobotXmlrpcClient.tfg_get_busy(${deviceId});`);
+                enterWriter.appendLine(`do {`);
+                enterWriter.appendLine(`sleep(100)`);
+                enterWriter.appendLine(`busy = onrobotXmlrpcClient.tfg_get_busy(${deviceId});`);
+                enterWriter.appendLine(`} while (busy == true);`);
+                enterWriter.appendLine(`let forcegrip = onrobotXmlrpcClient.tfg_get_force_grip_detected(${deviceId});`);
+                enterWriter.appendLine(`if (forcegrip == false) {`);
+                enterWriter.appendLine(`console.log("OnRobot 3FG: Force Grip is not detected after the Grip command!");`);
+                enterWriter.appendLine(`console.log("OnRobot 3FG: Program Halted!");`);
+                enterWriter.appendLine(`popup("OnRobot 3FG: Force Grip is not detected! Program halted!");`);
+                enterWriter.appendLine(`halt();`);
+                enterWriter.appendLine(` }`);  
+            }
+
         } else if (gripperSettings[0] === "Robotiq 2F-85/140" || gripperSettings[0] === "Robotiq Hand-E") {
             enterWriter.appendLine(`rq_move_and_wait(${Math.round((Number(gripperSettings[1]) / 100) * 255)}, ${Math.round((Number(gripperSettings[2]) / 100) * 255)}, ${Math.round((Number(gripperSettings[3]) / 100) * 255)}, ${robotiq_gripper_id});`);
         } else if (gripperSettings[0] === "Robotiq AirPick"){

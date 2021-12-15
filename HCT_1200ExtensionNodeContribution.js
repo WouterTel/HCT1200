@@ -5,6 +5,7 @@ const fs = require('fs');
 /*
 Bugs to be fixed/Additions to be done:
 
+The calibration tool that comes with the table is different then the one we have at Dymato. Height should be adjusted. (+/-line 1457)
 */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,9 +60,11 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
         
         // All of the selectboxes in the UI are defined here.
         this.uiHandler.on('selConnectionType', this.onSelConnectionType.bind(this));
+        this.uiHandler.on('selGripAction2FG7', this.onSelGripAction2FG7.bind(this));  
 	
 	    // Robotiq extension definition
         this.extensionRobotiq = this.rodiAPI.getExtensionContribution('gripperExtensionNodeContribution');
+        //this.extensionOnRobot = this.rodiAPI.getExtensionContribution('OnrobotExtensionNodeContribution');
 
         // Here we define the different screens of the plugin extension. Each screen has an handle with wich to call the screen ('screen') and an ID ('number')
         this.homeScreen = {'screen': this.components.homeScreen, 'number': 0};
@@ -81,6 +84,8 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
         this.inputScreenGripperD = {'screen': this.components.inputScreenGripperD, 'number': 11};
         this.inputScreenGripperE = {'screen': this.components.inputScreenGripperE, 'number': 11};
         this.inputScreenGripperF = {'screen': this.components.inputScreenGripperF, 'number': 11};
+        this.inputScreenGripperG = {'screen': this.components.inputScreenGripperG, 'number': 11};
+        this.inputScreenGripperH = {'screen': this.components.inputScreenGripperH, 'number': 11};
         this.inputScreenProduct = {'screen': this.components.inputScreenProduct, 'number': 13};
         this.inputScreenProductA = {'screen': this.components.inputScreenProductA, 'number': 14};
         this.inputScreenProductB = {'screen': this.components.inputScreenProductB, 'number': 15};
@@ -98,6 +103,10 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
         this.selGripperAction = this.components.selGripperAction;
         this.selProductEdit = this.components.selProductEdit;
         this.selCalibrationPosition = this.components.selCalibrationPosition;
+        this.selGripDirection2FG7 = this.components.selGripDirection2FG7;
+        this.selGripAction2FG7 = this.components.selGripAction2FG7;
+        this.selGripDirection3FG15 = this.components.selGripDirection3FG15;
+        this.selGripAction3FG15 = this.components.selGripAction3FG15;
 
         // Defining all of the inputboxes
         this.inpCreateNewName = this.components.inpCreateNewName;
@@ -128,6 +137,11 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
         this.inpMaxReachY = this.components.inpMaxReachY;
         this.inpWidthOnRobotGripper = this.components.inpWidthOnRobotGripper;
         this.inpForceOnRobotGripper = this.components.inpForceOnRobotGripper;
+        this.inpWidth2FG7Gripper = this.components.inpWidth2FG7Gripper;
+        this.inpForce2FG7Gripper = this.components.inpForce2FG7Gripper;
+        this.inpSpeed2FG7Gripper = this.components.inpSpeed2FG7Gripper;
+        this.inpWidth3FG15Gripper = this.components.inpWidth3FG15Gripper;
+        this.inpForce3FG15Gripper = this.components.inpForce3FG15Gripper;
         this.inpWidthRobotiqGripper = this.components.inpWidthRobotiqGripper;
         this.inpSpeedRobotiqGripper = this.components.inpSpeedRobotiqGripper;
         this.inpForceRobotiqGripper = this.components.inpForceRobotiqGripper;
@@ -136,13 +150,15 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
         this.selCalibrationSideContent = ["Right", "Left"];
         this.selGripperBrandContent = ["Schunk", "OnRobot", "Other"];
         this.selGripperTypeSchunkContent = ["Co-Act"];
-        this.selGripperTypeOnRobotContent = ["RG-6"];
+        this.selGripperTypeOnRobotContent = ["RG-6", "2FG7"];
         this.selGripperTypeRobotiqContent = ["2F-85/140", "Hand-E"];
-        this.selGripperList = ["Schunk Co-Act","OnRobot RG-6","Robotiq 2F-85/140","Robotiq Hand-E","Robotiq AirPick","IO-based gripper"];
+        this.selGripperList = ["Schunk Co-Act","OnRobot RG-6","OnRobot 2FG7","OnRobot 3FG15","Robotiq 2F-85/140","Robotiq Hand-E","Robotiq AirPick","IO-based gripper"];
         this.selGripperTypeOtherContent = ["IO-Based"];
         this.selConnectionTypeContent = ["Controller", "Tool"];
         this.selGripperActionContent = ["Open", "Close"];
         this.selSuctionActionContent = ["Pick","Drop"];
+        this.selGripDirectionContent = ["External", "Internal"];
+        this.sel3FG15ActionContent = ["Move","Grip","Flexible grip"];
         this.selGripperOutputOpenControllerContent = [0, 1, 2, 3, 4, 5, 6, 7];
         this.selGripperOutputCloseControllerContent = [0, 1, 2, 3, 4, 5, 6, 7];
         this.selGripperOutputOpenToolContent = [0, 1, 2, 3];
@@ -235,6 +251,8 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
         this.inputScreenGripperD.screen.setVisible(false); 
         this.inputScreenGripperE.screen.setVisible(false);
         this.inputScreenGripperF.screen.setVisible(false);
+        this.inputScreenGripperG.screen.setVisible(false);
+        this.inputScreenGripperH.screen.setVisible(false);
         this.inputScreenProduct.screen.setVisible(false); 
         this.inputScreenProductA.screen.setVisible(false); 
         this.inputScreenProductB.screen.setVisible(false); 
@@ -699,7 +717,9 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
                         this.switchScreen(this.homeScreen);
                     } else if(gripCheck == "wrong input"){
                         this.rodiAPI.getUserInteraction().MessageBox.show('ERROR', 'You can not open and close the gripper with the same output.', 'ERROR', 'OK');
-                    } else {this.rodiAPI.getUserInteraction().MessageBox.show('ERROR', 'Please fill in all the necessary boxes correctly.', 'ERROR', 'OK');}
+                    } else {
+                        this.rodiAPI.getUserInteraction().MessageBox.show('ERROR', 'Please fill in all the necessary boxes correctly.', 'ERROR', 'OK');
+                    }
                     break;
                 case 16:
                     let prodCheck = this.saveProductSettings(this.selProductEdit.getSelectedItem());
@@ -851,6 +871,15 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
         }
     }
 
+    onSelGripAction2FG7(type, data){
+        if(type === 'select'){
+            if(data.selected == "Open"){
+                this.inpForce2FG7Gripper.setDisabled(true);
+            } else if (data.selected == "Close"){
+                this.inpForce2FG7Gripper.setDisabled(false);
+            }
+        }
+    }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
@@ -908,7 +937,13 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
             this.selGripperBrand.removeItem("Robotiq 2F-85/140");
             this.selGripperBrand.removeItem("Robotiq AirPick");
         }
-
+        /*
+        if(this.extensionOnRobot == undefined){
+            this.selGripperBrand.removeItem("OnRobot RG-6");
+            this.selGripperBrand.removeItem("OnRobot 2FG7");
+            this.selGripperBrand.removeItem("OnRobot 3FG15");
+        }
+        */
         this.uiHandler.render();
     }
 
@@ -916,6 +951,7 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
         let settingArray = this.dataModel.get("gripperSettingList");
         let valueArray = [];
         let selectedGripper = this.selGripperBrand.getSelectedItem();
+        
         settingArray.forEach(value => {
             if(value.name === settingName) {
                 valueArray = value.data;
@@ -923,7 +959,7 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
         });
 
         if(selectedGripper != valueArray[0]){
-            valueArray = ["","","",""];
+            valueArray = ["","","","","",""];
         }
 
         // Remove items from boxes, correct ones will be added later in this function
@@ -931,6 +967,10 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
         this.selGripperOutputOpen.removeAllItems();
         this.selConnectionType.removeAllItems();
         this.selGripperAction.removeAllItems();
+        this.selGripDirection2FG7.removeAllItems();
+        this.selGripAction2FG7.removeAllItems()
+        this.selGripAction3FG15.removeAllItems();
+        this.selGripDirection3FG15.removeAllItems();
 
         // Add Open/Close option to box
         this.selGripperActionContent.forEach(value => {
@@ -965,6 +1005,49 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
             this.inpWidthOnRobotGripper.setText(valueArray[1]);
             this.inpForceOnRobotGripper.setText(valueArray[2]);
             this.targetScreenGripper = this.inputScreenGripperC;
+        } else if(selectedGripper === "OnRobot 2FG7") {
+            this.inpForce2FG7Gripper.setDisabled(false);
+
+            this.selGripDirectionContent.forEach(value => {
+                this.selGripDirection2FG7.addItem(String(value), String(value));
+            });
+            this.selGripperActionContent.forEach(value => {
+                this.selGripAction2FG7.addItem(String(value), String(value));
+            });
+            if (valueArray[0] == ""){
+                this.inpWidth2FG7Gripper.setText("10");
+                this.inpForce2FG7Gripper.setText("20");
+                this.inpSpeed2FG7Gripper.setText("50");
+                this.selGripDirection2FG7.selectItem("External");
+                this.selGripAction2FG7.selectItem("Close")
+            } else {
+                this.inpWidth2FG7Gripper.setText(valueArray[1]);
+                this.inpForce2FG7Gripper.setText(valueArray[2]);
+                this.inpSpeed2FG7Gripper.setText(valueArray[3]);
+                this.selGripDirection2FG7.selectItem(valueArray[4]);
+                this.selGripAction2FG7.selectItem(valueArray[5]);
+                if(valueArray[5] == "Open"){this.inpForce2FG7Gripper.setDisabled(true);};
+            }
+            this.targetScreenGripper = this.inputScreenGripperG;
+        } else if(selectedGripper === "OnRobot 3FG15") {
+            this.selGripDirectionContent.forEach(value => {
+                this.selGripDirection3FG15.addItem(String(value), String(value));
+            });
+            this.sel3FG15ActionContent.forEach(value => {
+                this.selGripAction3FG15.addItem(String(value), String(value));
+            });
+            if (valueArray[0] == ""){
+                this.inpWidth3FG15Gripper.setText("10");
+                this.inpForce3FG15Gripper.setText("20");
+                this.selGripDirection3FG15.selectItem("External");
+                this.selGripAction3FG15.selectItem("Move")
+            } else {
+                this.inpWidth3FG15Gripper.setText(valueArray[1]);
+                this.inpForce3FG15Gripper.setText(valueArray[2]);
+                this.selGripDirection3FG15.selectItem(valueArray[3]);
+                this.selGripAction3FG15.selectItem(valueArray[4]);
+            }
+            this.targetScreenGripper = this.inputScreenGripperH;
         } else if(selectedGripper === "Robotiq 2F-85/140") {
             this.inpWidthRobotiqGripper.setText(valueArray[1]);
             this.inpSpeedRobotiqGripper.setText(valueArray[2]);
@@ -1213,10 +1296,23 @@ class HCT_1200ExtensionNodeContribution extends ExtensionNodeContribution {
                 gripperSetting.data = [this.selGripperBrand.getSelectedItem(), "Tool", 1, 0, this.selGripperAction.getSelectedItem()];
             }
         } else if(this.selGripperBrand.getSelectedItem() === "OnRobot RG-6") {
-            if(this.inpWidthOnRobotGripper.getText() == "" || this.inpForceOnRobotGripper.getText() == ""){
+            if(Number(this.inpWidthOnRobotGripper.getText()) < 0 || this.inpForceOnRobotGripper.getText() == ""){
                 return false;
             } else {
                 gripperSetting.data = [this.selGripperBrand.getSelectedItem(), this.inpWidthOnRobotGripper.getText(), this.inpForceOnRobotGripper.getText()];
+            }
+        } else if(this.selGripperBrand.getSelectedItem() === "OnRobot 2FG7") {
+            if(Number(this.inpWidth2FG7Gripper.getText()) < 0 || this.inpForce2FG7Gripper.getText() == "" || this.inpSpeed2FG7Gripper == ""){
+                this.console.log(`${this.inpWidth2FG7Gripper.getText()}`);
+                return false;
+            } else {
+                gripperSetting.data = [this.selGripperBrand.getSelectedItem(), this.inpWidth2FG7Gripper.getText(), this.inpForce2FG7Gripper.getText(), this.inpSpeed2FG7Gripper.getText(), this.selGripDirection2FG7.getSelectedItem(), this.selGripAction2FG7.getSelectedItem()];
+            }
+        } else if(this.selGripperBrand.getSelectedItem() === "OnRobot 3FG15") {
+            if(Number(this.inpWidth3FG15Gripper.getText()) < 0 || this.inpForce3FG15Gripper.getText() == ""){
+                return false;
+            } else {
+                gripperSetting.data = [this.selGripperBrand.getSelectedItem(), this.inpWidth3FG15Gripper.getText(), this.inpForce3FG15Gripper.getText(), this.selGripDirection3FG15.getSelectedItem(), this.selGripAction3FG15.getSelectedItem()];
             }
         } else if(this.selGripperBrand.getSelectedItem() === "Robotiq Hand-E") {
             if(this.inpWidthRobotiqGripper.getText() =="" || this.inpSpeedRobotiqGripper.getText() == "" || this.inpForceRobotiqGripper.getText() == ""){

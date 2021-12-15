@@ -229,15 +229,13 @@
 .screen-3 .block-2-3 {
     width: 290px;
     height: 250px;
-    padding-top: 40px;
-
+    padding-top: 20px;
 }
 
 .screen-3 .block-2-4 {
     width: 200px;
     height: 250px;
-    padding-top: 30px;
-
+    padding-top: 20px;
 }
 
 .screen-3 .block-2-5 {
@@ -378,13 +376,13 @@
 
 .screen-3 .label-2 {
     margin: 25px;
-    margin-bottom: 50px;
-    margin-top: 15px;
+    /*margin-bottom: 50px;*/
+    margin-top: 35px;
 }
 
 .screen-3 .label-3 {
-    margin-bottom: 50px;
-    margin-top: 15px;
+    margin: 25px;
+    margin-top: 30px;
 }
 
 .screen-3 .label-4 {
@@ -446,6 +444,14 @@
     height: 30px;
     margin-top: 15px;
     margin-bottom: 35px;
+    font-size: 13px;
+}
+
+.screen-3 .selbox-2 {
+    width: 200px;
+    height: 30px;
+    margin-top: 25px;
+    /*margin-bottom: 35px;*/
     font-size: 13px;
 }
 
@@ -1057,6 +1063,70 @@
     </div>
 </XDiv>
 
+<XDiv id="inputScreenGripperG" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-3">
+                    <XLabel className="label-3" id="lbAction2FG7Gripper" htmlFor= "selGripAction2FG7" visible="true" >Action: </XLabel>
+                    <XLabel className="label-3" id="lbWidth2FG7Gripper" htmlFor= "inpWidth2FG7Gripper" visible="true" >Gripping Width [mm]: </XLabel>
+                    <XLabel className="label-3" id="lbForce2FG7Gripper" htmlFor= "inpForce2FG7Gripper" visible="true" >gripping Force [N]: </XLabel>
+                    <XLabel className="label-3" id="lbSpeed2FG7Gripper" htmlFor= "inpSpeed2FG7Gripper" visible="true" >gripping Speed [%]: </XLabel>
+                    <XLabel className="label-3" id="lbDirection2FG7Gripper" htmlFor= "selGripDirection2FG7" visible="true" >gripping direction: </XLabel>
+                </div>
+                <div class="block-2-4">
+                    <XSelectBox className="selbox-2" id="selGripAction2FG7"></XSelectBox>
+                    <XInput className="input" id="inpWidth2FG7Gripper" type="number" size="20" min="0" max="160"/>
+                    <XInput className="input" id="inpForce2FG7Gripper" type="number" size="20" min="20" max="140"/>
+                    <XInput className="input" id="inpSpeed2FG7Gripper" type="number" size="50" min="10" max="100"/>
+                    <XSelectBox className="selbox-2" id="selGripDirection2FG7"></XSelectBox>
+                </div>
+                <div class="block-2-5">
+                    <XImage className="img-4" id="gripper-onrobot-2FG7" src="resource/OnRobot-2FG7.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-save" text="Save"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
+<XDiv id="inputScreenGripperH" visible="false">
+    <div class="container">
+        <div class="screen-3">
+            <div class="block-1">
+                <XImage className="img-1" id="logo-hct1200" src="resource/logo-hct-verkleind.png"/>
+                <XImage className="img-2" id="logo-dymato" src="resource/logo-dymato.png"/>
+            </div>
+            <div class="block-2">
+                <div class="block-2-3">
+                    <XLabel className="label-3" id="lbAction3FG15Gripper" htmlFor= "selGripAction3FG15" visible="true" >Action: </XLabel>
+                    <XLabel className="label-3" id="lbWidth3FG15Gripper" htmlFor= "inpWidth3FG15Gripper" visible="true" >Gripping Width [mm]: </XLabel>
+                    <XLabel className="label-3" id="lbForce3FG15Gripper" htmlFor= "inpForce3FG15Gripper" visible="true" >gripping Force [%]: </XLabel>
+                    <XLabel className="label-3" id="lbDirection3FG15Gripper" htmlFor= "selGripDirection3FG15" visible="true" >gripping direction: </XLabel>
+                </div>
+                <div class="block-2-4">
+                    <XSelectBox className="selbox-2" id="selGripAction3FG15"></XSelectBox>
+                    <XInput className="input" id="inpWidth3FG15Gripper" type="number" size="20" min="0" max="500"/>
+                    <XInput className="input" id="inpForce3FG15Gripper" type="number" size="20" min="20" max="100"/>
+                    <XSelectBox className="selbox-2" id="selGripDirection3FG15"></XSelectBox>
+                </div>
+                <div class="block-2-5">
+                    <XImage className="img-4" id="gripper-onrobot-3FG15" src="resource/OnRobot-3FG15.png"/>
+                </div>
+            </div>
+            <div class="block-3">
+                <XButton className="xbtn" id="btn-back" text="Back"/>
+                <XButton className="xbtn" id="btn-save" text="Save"/>
+            </div>
+        </div>
+    </div>
+</XDiv>
 <!-- The HTML code for the "productScherm" screen layout -->
 <XDiv id="createNewOverlay" visible="false">
     <div class="screen-overlay">

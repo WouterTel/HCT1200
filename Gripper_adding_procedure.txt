@@ -24,8 +24,8 @@ In the extension node contribution:
 	- Add the gripper to the setGripperPageTwo function to make sure the right screen will appear when the gripper settings are entered.
 	- Add the gripper to the saveGripperSettings function.
 
-	If you added a Robotiq gripper:
-	- look for the if statement in the setGripperPageOne function that checks if the Robotiq plug-in is installed and add your gripper to
+	If you added a Robotiq or OnRobot gripper:
+	- look for the if statement in the setGripperPageOne function that checks if the plug-in is installed and add your gripper to
 	  this list so it will get deleted when the Robotiq plug-in is not installed. Do this by adding the following command:
 	   this.selGripperBrand.removeItem("Your gripper name");
 
@@ -33,5 +33,5 @@ In the program node contribution:
 
 	- Add the logic needed to open and close the gripper to the generateScript function (around line 271)
 
-	If you added a Robotiq gripper:
+	If you added a Robotiq or gripper:
 	- Add the name of your Robotiq gripper to the if statement in the generateScript function around line 150 that gets the gripper ID.
