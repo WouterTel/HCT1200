@@ -334,9 +334,9 @@ class HCT_1200ProgramNodeContribution extends ProgramNodeContribution {
                 }
             } else if (gripperSettings[5] == "Open"){
                 if (gripperSettings[4] == "External"){
-                    enterWriter.appendLine(`onrobotXmlrpcClient.twofg_grip_internal(${deviceId},${width},70,${gripSpeed});`);
-                } else if (gripperSettings[4] == "Internal"){
                     enterWriter.appendLine(`onrobotXmlrpcClient.twofg_grip_external(${deviceId},${width},70,${gripSpeed});`);
+                } else if (gripperSettings[4] == "Internal"){
+                    enterWriter.appendLine(`onrobotXmlrpcClient.twofg_grip_internal(${deviceId},${width},70,${gripSpeed});`);
                 }
             }
             

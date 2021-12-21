@@ -1,7 +1,11 @@
 Updates voor de HCT-1200 plug-in
-Laatsts bijgewerkt: 9-2-2021 (Wouter Tel, Dymato)
-Versie 2.1.0
-Vorige versie 2.0.2
+Laatsts bijgewerkt: 15-15-2021 (Wouter Tel, Dymato)
+Versie 2.1.1
+Vorige versie 2.1.0
+
+Verbeteringen in 2.1.0:
+	
+	- OnRobot 2FG7 en 3FG15 grippers toegevoegd.
 
 Verbeteringen in 2.1.0:
 
